@@ -9,8 +9,48 @@
 </head>
 
 <body style="background-color:rgb(168, 234, 236);">
-    <h1 style="text-align:center; font-family:Algerian,serif;"><br><br><br>Coming Soon...</h1>
-    <p style="text-align:center">Please wait.</p>
+    <h2 style="text-align:center; font-family:Algerian,serif;"><br>Implementation of Binary Search algorithm.</h2>
+    <p><b>IDE Used:</b> Jetbrains Clion</p>
+    <h3>Program Code:</h3>
+    <pre>
+        <code>
+            #include "iostream"
+            
+            using namespace std;
+            
+            int binarySearch(const int array[], int low, int high, int x) {
+                while (low <= high) { 
+                    int mid=low + (high - low) / 2; 
+                    if (array[mid]==x) 
+                        return mid; 
+                    if (array[mid] < x) 
+                        low=mid + 1; 
+                    else 
+                        high=mid - 1; 
+                } 
+                return -1;
+            } 
+             
+            int main() { 
+                int myarray[10]; 
+                int num; 
+                int output; 
+                cout << "Enter 10 elements in ascending order: " ; 
+                for (int &i: myarray) 
+                    cin>> i;
+                cout << "Enter element to search: " ; 
+                cin>> num;
+                output = binarySearch(myarray, 0, 9, num);
+                if (output == -1)
+                    cout << "No Match Found" << endl;
+                else 
+                    cout << "Match found at position: " << output << endl; 
+                return 0; 
+            }
+        </code>
+    </pre>
+    <h3>Output:</h3>
 </body>
+<img src="WS1_output.jpg" alt="Output" style="width: 50%;">
 
 </html>
