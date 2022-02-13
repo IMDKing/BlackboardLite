@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORKSHEET 1</title>
+</head>
+
+<body style="background-color:rgb(168, 234, 236);">
+    <h4 style="text-align:center; font-family:Algerian,serif;"><br>Create an application to save the employee
+        information using arrays having following fields:- empid[], depName[], empDes, empName[], dateJoin[], basic[],
+        hra[], it[], DesCodes[].</h4>
+    <p><b>Tasks:-</b><br>
+        (a) Salary should be calculated as (Basic+HRA+DA-IT)<br>
+        (b)Printing designation and data according to employee designation.</p>
+    <p><b>IDE Used:</b> Jetbrains Intellij IDEA</p>
+    <h3>Program Code:</h3>
+    <pre>
+        <code>
+            import java.io.BufferedReader;
+            import java.io.IOException;
+            import java.io.InputStreamReader;
+            
+            public class Employee {
+                String empId, depName, empDesignation, empName, dateJoin;
+                int basic, hra, it;
+                char designationCode;
+                public static int da;
+                
+                public Employee(String empId, String depName, String empDesignation, String empName, String dateJoin, int basic, int hra, int it, char designationCode) {
+                    this.empId = empId;
+                    this.depName = depName;
+                    this.empDesignation = empDesignation;
+                    this.empName = empName;
+                    this.dateJoin = dateJoin;
+                    this.basic = basic;
+                    this.hra = hra;
+                    this.it = it;
+                    this.designationCode = designationCode;
+                }
+
+                public static int da(char designationCode) {
+                    switch (designationCode) {
+                        case 'e' -> da = 20000;
+                        case 'c' -> da = 32000;
+                        case 'k' -> da = 12000;
+                        case 'r' -> da = 15000;
+                        case 'm' -> da = 40000;
+                        default -> throw new IllegalStateException("Unexpected value: " + designationCode);
+                    }
+                    return da;
+                }
+
+                public static int salary(int basic, int hra, int da, int it) {
+                return basic + hra + da - it;
+                }
+
+                public static void details(String empId, String empName, String depName, String empDesignation, int salary) {
+                    System.out.println("Emp Id\t\tEmployee Name\tDepartment\t\tDesignation\t\tSalary");
+                    System.out.println(empId + "\t\t" + empName + "\t\t\t" + depName + "\t\t\t\t" + empDesignation + "\t\t" + salary);
+                }
+
+                public static void main(String[] args) throws IOException {
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+                    String empId;
+                    Employee[] employees = new Employee[3];
+                    employees[0] = new Employee("123", "ABC", "Engineer", "NAME_1", "1/04/2009", 20000, 8000, 3000, 'e');
+                    employees[1] = new Employee("456", "DEF", "Consultant", "NAME_2", "23/08/2012", 30000, 12000, 9000, 'c');
+                    employees[2] = new Employee("789", "GHI", "Clerk", "NAME_3", "12/11/2008", 10000, 8000, 1000, 'k');
+                    for (int i = 0; i < 3; i++) { 
+                        System.out.print("\nEnter the employee ID: ");
+                        empId = bufferedReader.readLine();
+                        if (employees[i].empId.equals(empId)) {
+                            int salary = salary(employees[i].basic, employees[i].hra, da(employees[i].designationCode), employees[i].designationCode);
+                            details(employees[i].empId, employees[i].empName, employees[i].depName, employees[i].empDesignation, salary);
+                        } 
+                        else
+                            System.out.println(" Entered employee ID not found");
+                    }
+                }
+            }
+        </code>
+    </pre>
+    <h3>Output:</h3>
+</body>
+<img src="WS1_output.jpg" alt="Output" style="width: 60%;">
+
+</html>
